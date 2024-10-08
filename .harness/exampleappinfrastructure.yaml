@@ -1,0 +1,13 @@
+infrastructureDefinition:
+  name: example-app-infrastructure
+  identifier: exampleappinfrastructure
+  orgIdentifier: default
+  projectIdentifier: default_project
+  environmentRef: preprodenv
+  deploymentType: Kubernetes
+  type: KubernetesDirect
+  spec:
+    connectorRef: gkeconnector
+    namespace: example-app-ns
+    releaseName: release-<+INFRA_KEY_SHORT_ID>
+  allowSimultaneousDeployments: false
