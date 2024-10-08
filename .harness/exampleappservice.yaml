@@ -1,0 +1,31 @@
+service:
+  name: example-app-service
+  identifier: exampleappservice
+  serviceDefinition:
+    type: Kubernetes
+    spec:
+      manifests:
+        - manifest:
+            identifier: exampleappmanifests
+            type: HelmChart
+            spec:
+              store:
+                type: Github
+                spec:
+                  connectorRef: asyghconnector
+                  gitFetchType: Branch
+                  folderPath: helm-charts/
+                  repoName: example-app
+                  branch: master
+              subChartPath: ""
+              valuesPaths:
+                - helm-overrides/
+              skipResourceVersioning: false
+              enableDeclarativeRollback: true
+              helmVersion: V3
+              fetchHelmChartMetadata: true
+      artifacts:
+        primary: {}
+  gitOpsEnabled: false
+  orgIdentifier: default
+  projectIdentifier: default_project
